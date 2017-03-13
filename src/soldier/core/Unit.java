@@ -27,7 +27,7 @@ public interface Unit extends Iterable<Unit>{
 	/**
 	 * Composite methods
 	 */
-	public Iterator<Unit> subUnits();
+	//public Iterator<Unit> subUnits();
 	public void addUnit(Unit au);
 	public void removeUnit(Unit au);
 

@@ -23,5 +23,4 @@ public class UnitRobot extends UnitInfantry {
 		super.addEquipment(w);
 	}
 
-	
 }

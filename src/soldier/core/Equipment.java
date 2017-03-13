@@ -4,14 +4,12 @@
  */
 package soldier.core;
 
-import soldier.equipment.WeaponVisitor;
-
 public interface Equipment extends Cloneable {
 	String getName();
 
 	BehaviorSoldier createExtension(BehaviorSoldier s);
 
-	void accept(WeaponVisitor v);
+	void accept(Visitor v);
 
 	Equipment clone();
 }

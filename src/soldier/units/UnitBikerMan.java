@@ -23,5 +23,4 @@ public class UnitBikerMan extends UnitRider {
 			throw new EquipmentException();
 		super.addEquipment(w);
 	}
-
 }

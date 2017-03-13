@@ -38,9 +38,4 @@ public class EquipmentTrumpet extends EquipmentToy {
 		
 	}
 
-	@Override
-	public void accept(WeaponVisitor v) {
-		// TODO Auto-generated method stub
-		
-	}
 }

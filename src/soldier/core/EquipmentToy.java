@@ -4,12 +4,13 @@
  */
 package soldier.core;
 
-import soldier.equipment.WeaponVisitor;
 
 public abstract class EquipmentToy extends EquipmentAbstract {
 
+	
 	@Override
-	public void accept(WeaponVisitor v) {
+	public void accept(Visitor v) {
 		v.visit(this);
 	}
+	
 }

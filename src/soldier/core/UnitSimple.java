@@ -90,7 +90,7 @@ public abstract class UnitSimple extends UnitObservableAbstract {
 	}
 
 	@Override
-	final public Iterator<Unit> subUnits() {
+	final public Iterator<Unit> iterator() {
 		return Collections.emptyIterator();
 	}
 

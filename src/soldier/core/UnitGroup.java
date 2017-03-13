@@ -91,16 +91,11 @@ public class UnitGroup extends UnitObservableAbstract {
 	}
 
 	@Override
-	public Iterator<Unit> subUnits() {
-		return units.iterator();
-	}
-
-	@Override
 	public Iterator<Equipment> getEquipments() {
 		if (units.isEmpty())
 			return Collections.emptyIterator();
 		return new Iterator<Equipment>() {
-			Iterator<Unit> itUnit = subUnits();
+			Iterator<Unit> itUnit = iterator();
 			Iterator<Equipment> curIt = itUnit.next().getEquipments();
 
 			@Override
@@ -122,7 +117,7 @@ public class UnitGroup extends UnitObservableAbstract {
 	 */
 	@Override
 	public void addEquipment(Equipment w) {
-		Iterator<Unit> it = subUnits();
+		Iterator<Unit> it = iterator();
 		while (it.hasNext()) {
 			Unit u = it.next();
 			try {
@@ -137,14 +132,16 @@ public class UnitGroup extends UnitObservableAbstract {
 
 	@Override
 	public void removeEquipment(Equipment w) {
-		for (Iterator<Unit> it = subUnits(); it.hasNext(); it.next()
+		for (Iterator<Unit> it = iterator(); it.hasNext(); it.next()
 				.removeEquipment(w)) {
 		}
 	}
 
 	@Override
 	public void accept(Visitor v) {
-		v.visit(this);
+		for(Unit u: units){
+			u.accept(v);
+		}
 	}
 
 	@Override

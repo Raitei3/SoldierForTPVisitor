@@ -4,9 +4,15 @@
  */
 package test;
 
+import java.util.ArrayList;
+
 import soldier.ages.AgeFutureFactory;
 import soldier.ages.AgeMiddleFactory;
+import soldier.core.AddObserverAllArmy;
 import soldier.core.AgeAbstractFactory;
+import soldier.core.ArrayUnitRiderVisitor;
+import soldier.core.CounterAttackWeaponVisitor;
+import soldier.core.CounterSoldierVisitor;
 import soldier.core.Unit;
 import soldier.core.UnitGroup;
 import soldier.util.DeadUnitCounterObserver;
@@ -36,11 +42,41 @@ public class MainFightTwoAges {
 
 		AgeAbstractFactory age1 = new AgeMiddleFactory();
 		AgeAbstractFactory age2 = new AgeFutureFactory();
+		
 		DeadUnitCounterObserver obs = new  DeadUnitCounterObserver();
+		CounterSoldierVisitor cv = new CounterSoldierVisitor();
+		CounterAttackWeaponVisitor cwv = new CounterAttackWeaponVisitor();
+		ArrayUnitRiderVisitor arrayV = new ArrayUnitRiderVisitor(200);
+		AddObserverAllArmy obsAllArmy = new AddObserverAllArmy(obs);
 
 		Unit team1 = createTeam(age1, "Team1::"); 
 		Unit team2 = createTeam(age2, "Team2::"); 
 		int round = 0;
+		
+		//test Visiteur qui compte le nombre de soldat.
+		team1.accept(cv);
+		System.out.println("nombre de soldat team 1 = "+cv.getNbSoldier());
+		team2.accept(cv);
+		System.out.println("nombre de soldat team 1 + team 2 = "+cv.getNbSoldier());
+		
+		//test Visiteur qui compte le nombre d'arme d'attaque.
+		team1.accept(cwv);
+		System.out.println("nombre d'arme team 1 = "+cwv.getNbAttackWeapon());
+		team2.accept(cwv);
+		System.out.println("nombre d'arme team 1 + team 2 = "+cwv.getNbAttackWeapon());
+		
+		//test Visiteur qui retourne un tableau de UnitRider.
+		//team1.accept(arrayV);
+		//ArrayList<Unit> ar = arrayV.getListUnitRider();
+		//System.out.println("tableau de Unit rider = "+ar.size());
+		
+		//test Vsiteur qui ajoute les observable a toute une armé
+		team1.accept(obsAllArmy);
+		team2.accept(obsAllArmy);
+		
+		
+		
+		
 		/*
 		while(team1.subUnits().hasNext())
 			team1.subUnits().add
@@ -48,6 +84,7 @@ public class MainFightTwoAges {
 
 		while(team1.alive() && team2.alive()) {
 			System.out.println("Round  #" + round++);
+			System.out.println("number of death " + obs.getNumberOfDeadUnits());
 			float st1 = team1.strike();
 			System.out.println(team1.getName() + " attack with force : " + st1);
 			team2.parry(st1);

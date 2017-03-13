@@ -26,5 +26,4 @@ public class UnitHorseMan extends UnitRider {
 			throw new EquipmentException();
 		super.addEquipment(w);
 	}
-
 }
