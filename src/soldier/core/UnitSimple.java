@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 public abstract class UnitSimple extends UnitObservableAbstract {
 
-	private BehaviorSoldier behavior;
+	protected BehaviorSoldier behavior;
 	private String name;
 
 	public UnitSimple(String name, BehaviorSoldier behavior) {
@@ -87,6 +87,11 @@ public abstract class UnitSimple extends UnitObservableAbstract {
 				return tmp;
 			}
 		};
+	}
+	
+	public void accept(Visitor v){
+		if(behavior instanceof BehaviorExtension)
+			((BehaviorExtension) behavior).getOwner().accept(v);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ public class ArrayUnitRiderVisitor implements Visitor {
 	
 	public ArrayUnitRiderVisitor(double health) {
 		this.health=health;
+		array = new ArrayList<Unit>();
 	}
 
 	public void visit(UnitGroup o) {}

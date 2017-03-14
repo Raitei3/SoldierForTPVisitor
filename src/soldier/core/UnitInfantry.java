@@ -4,8 +4,6 @@
  */
 package soldier.core;
 
-import java.util.Iterator;
-
 public abstract class UnitInfantry extends UnitSimple {
 
 	public UnitInfantry(String name, BehaviorSoldier behavior) {
@@ -13,9 +11,7 @@ public abstract class UnitInfantry extends UnitSimple {
 	}
 
 	public void accept(Visitor v){
+		super.accept(v);
 		v.visit(this);
-		/*for(Iterator<Equipment> it = getEquipments(); it.hasNext();it.next()){
-			((Equipment) it).accept(v);
-		}*/
 	}
 }

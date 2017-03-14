@@ -24,4 +24,8 @@ public class AddObserverAllArmy implements Visitor {
 	public void visit(EquipmentDefense o) {}
 	
 	public void visit(EquipmentToy o) {}
+	
+	public void setObserver(UnitObserver obs){
+		this.obs = obs;
+	}
 }

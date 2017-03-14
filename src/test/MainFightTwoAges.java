@@ -43,11 +43,13 @@ public class MainFightTwoAges {
 		AgeAbstractFactory age1 = new AgeMiddleFactory();
 		AgeAbstractFactory age2 = new AgeFutureFactory();
 		
-		DeadUnitCounterObserver obs = new  DeadUnitCounterObserver();
+		DeadUnitCounterObserver obsTeam1 = new  DeadUnitCounterObserver();
+		DeadUnitCounterObserver obsTeam2 = new  DeadUnitCounterObserver();
+
 		CounterSoldierVisitor cv = new CounterSoldierVisitor();
 		CounterAttackWeaponVisitor cwv = new CounterAttackWeaponVisitor();
 		ArrayUnitRiderVisitor arrayV = new ArrayUnitRiderVisitor(200);
-		AddObserverAllArmy obsAllArmy = new AddObserverAllArmy(obs);
+		AddObserverAllArmy obsAllArmy = new AddObserverAllArmy(obsTeam1);
 
 		Unit team1 = createTeam(age1, "Team1::"); 
 		Unit team2 = createTeam(age2, "Team2::"); 
@@ -55,27 +57,29 @@ public class MainFightTwoAges {
 		
 		//test Visiteur qui compte le nombre de soldat.
 		team1.accept(cv);
-		System.out.println("nombre de soldat team 1 = "+cv.getNbSoldier());
+		System.out.println("Number of soldier team 1 = "+cv.getNbSoldier());
 		team2.accept(cv);
-		System.out.println("nombre de soldat team 1 + team 2 = "+cv.getNbSoldier());
+		System.out.println("Number of soldier team 1 + team 2 = "+cv.getNbSoldier());
 		
 		//test Visiteur qui compte le nombre d'arme d'attaque.
 		team1.accept(cwv);
-		System.out.println("nombre d'arme team 1 = "+cwv.getNbAttackWeapon());
+		System.out.println("Number of weapon team 1 = "+cwv.getNbAttackWeapon());
 		team2.accept(cwv);
-		System.out.println("nombre d'arme team 1 + team 2 = "+cwv.getNbAttackWeapon());
+		System.out.println("Number of weapon team 1 + team 2 = "+cwv.getNbAttackWeapon());
 		
 		//test Visiteur qui retourne un tableau de UnitRider.
-		//team1.accept(arrayV);
-		//ArrayList<Unit> ar = arrayV.getListUnitRider();
-		//System.out.println("tableau de Unit rider = "+ar.size());
+		team1.accept(arrayV);
+		team2.accept(arrayV);
+		ArrayList<Unit> ar = arrayV.getListUnitRider();
+		System.out.println("Unit rider in game :");
+		for(Unit u : ar){
+			System.out.println(u.getName());
+		}
 		
 		//test Vsiteur qui ajoute les observable a toute une armé
 		team1.accept(obsAllArmy);
+		obsAllArmy.setObserver(obsTeam2);
 		team2.accept(obsAllArmy);
-		
-		
-		
 		
 		/*
 		while(team1.subUnits().hasNext())
@@ -84,15 +88,21 @@ public class MainFightTwoAges {
 
 		while(team1.alive() && team2.alive()) {
 			System.out.println("Round  #" + round++);
-			System.out.println("number of death " + obs.getNumberOfDeadUnits());
+			System.out.println("number of death in team1 " + obsTeam1.getNumberOfDeadUnits());
+			System.out.println("number of death in team2 " + obsTeam2.getNumberOfDeadUnits());
+
 			float st1 = team1.strike();
 			System.out.println(team1.getName() + " attack with force : " + st1);
 			team2.parry(st1);
-			System.out.println("number of death " + obs.getNumberOfDeadUnits());
+			System.out.println("number of death in team 1 " + obsTeam1.getNumberOfDeadUnits());
+			System.out.println("number of death in team 2 " + obsTeam2.getNumberOfDeadUnits());
+
 			float st2 = team2.strike();
 			System.out.println(team2.getName() + " attack with force : " + st2);
 			team1.parry(st2);
-			System.out.println("number of death " + obs.getNumberOfDeadUnits());
+			System.out.println("number of death in team 1 " + obsTeam1.getNumberOfDeadUnits());
+			System.out.println("number of death in team 2 " + obsTeam2.getNumberOfDeadUnits());
+
 		}
 		System.out.println("The end ... " + (team1.alive() ? team1.getName() : team2.getName()) + " won." );
 	}
