@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 public abstract class UnitSimple extends UnitObservableAbstract {
 
-	protected BehaviorSoldier behavior;
+	private BehaviorSoldier behavior;
 	private String name;
 
 	public UnitSimple(String name, BehaviorSoldier behavior) {
