@@ -1,17 +1,13 @@
 package soldier.core;
 
-import java.util.Iterator;
-
 public class CounterSoldierVisitor implements Visitor {
 	private int counter;
 	
 
-	public void visit(UnitGroup o) {
-		Iterator<Unit> it = o.iterator();
-		while(it.hasNext()){
-			Unit u = it.next();
+	public void visit(UnitGroup o) { //**** a changer ******//
+		/*for(Unit u: (UnitGroup)o.iterator()){
 			u.accept(this);
-		}
+		}*/
 	}
 
 	public void visit(UnitInfantry o) {
