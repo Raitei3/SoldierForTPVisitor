@@ -3,11 +3,12 @@ package soldier.core;
 public class CounterSoldierVisitor implements Visitor {
 	private int counter;
 	
-
-	public void visit(UnitGroup o) { //**** a changer ******//
-		/*for(Unit u: (UnitGroup)o.iterator()){
-			u.accept(this);
-		}*/
+	public CounterSoldierVisitor(){
+		counter = 0;
+	}
+	
+	public void visit(UnitGroup o) {
+		o.accept(this);
 	}
 
 	public void visit(UnitInfantry o) {

@@ -56,13 +56,14 @@ public class MainFightTwoAges {
 		int round = 0;
 		
 		//test Visiteur qui compte le nombre de soldat.
-		team1.accept(cv);
+		cv.visit((UnitGroup) team1);
 		System.out.println("Number of soldier team 1 = "+cv.getNbSoldier());
 		team2.accept(cv);
 		System.out.println("Number of soldier team 1 + team 2 = "+cv.getNbSoldier());
 		
 		//test Visiteur qui compte le nombre d'arme d'attaque.
 		team1.accept(cwv);
+		
 		System.out.println("Number of weapon team 1 = "+cwv.getNbAttackWeapon());
 		team2.accept(cwv);
 		System.out.println("Number of weapon team 1 + team 2 = "+cwv.getNbAttackWeapon());
@@ -76,7 +77,7 @@ public class MainFightTwoAges {
 			System.out.println(u.getName());
 		}
 		
-		//test Vsiteur qui ajoute les observable a toute une armé
+		//test Vsiteur qui ajoute les observable a toute une armï¿½
 		team1.accept(obsAllArmy);
 		obsAllArmy.setObserver(obsTeam2);
 		team2.accept(obsAllArmy);
