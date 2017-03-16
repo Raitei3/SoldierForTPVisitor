@@ -11,7 +11,7 @@ public abstract class UnitRider extends UnitSimple {
 	}
 	
 	public void accept(Visitor v){
-		//super.accept(v);
+		super.accept(v);
 		v.visit(this);
 	}
 

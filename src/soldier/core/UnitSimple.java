@@ -90,8 +90,9 @@ public abstract class UnitSimple extends UnitObservableAbstract {
 	}
 	
 	public void accept(Visitor v){
-		if(behavior instanceof BehaviorExtension)
-			((BehaviorExtension) behavior).getOwner().accept(v);
+		Iterator<Equipment> e = this.getEquipments();
+		while (e.hasNext())
+			e.next().accept(v);
 	}
 
 	@Override
