@@ -11,7 +11,7 @@ import soldier.ages.AgeMiddleFactory;
 import soldier.core.AddObserverAllArmy;
 import soldier.core.AgeAbstractFactory;
 import soldier.core.ArrayUnitRiderVisitor;
-import soldier.core.CounterAttackWeaponVisitor;
+import soldier.core.PrintAttackWeaponVisitor;
 import soldier.core.CounterSoldierVisitor;
 import soldier.core.Unit;
 import soldier.core.UnitGroup;
@@ -47,7 +47,7 @@ public class MainFightTwoAges {
 		DeadUnitCounterObserver obsTeam2 = new  DeadUnitCounterObserver();
 
 		CounterSoldierVisitor cv = new CounterSoldierVisitor();
-		CounterAttackWeaponVisitor cwv = new CounterAttackWeaponVisitor();
+		PrintAttackWeaponVisitor cwv = new PrintAttackWeaponVisitor();
 		ArrayUnitRiderVisitor arrayV = new ArrayUnitRiderVisitor(200);
 		AddObserverAllArmy obsAllArmy = new AddObserverAllArmy(obsTeam1);
 

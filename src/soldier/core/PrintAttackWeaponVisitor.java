@@ -1,6 +1,6 @@
 package soldier.core;
 
-public class CounterAttackWeaponVisitor implements Visitor {
+public class PrintAttackWeaponVisitor implements Visitor {
 	
 	public void visit(UnitGroup o) {}
 
