@@ -34,5 +34,8 @@ public class ArrayUnitRiderVisitor implements Visitor {
 	public void resetListUnitRider(){
 		array.clear();
 	}
+	public void setHealth(double health){
+		this.health = health;
+	}
 
 }

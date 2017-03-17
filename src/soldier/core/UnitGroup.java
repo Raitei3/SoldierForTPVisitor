@@ -139,9 +139,10 @@ public class UnitGroup extends UnitObservableAbstract {
 
 	@Override
 	public void accept(Visitor v) {
-		for(Unit u: units){
+		for(Unit u: units){ //on parcourt les unités et on leurs donnent le visiteur 
 			u.accept(v);
 		}
+		v.visit(this);
 	}
 
 	@Override

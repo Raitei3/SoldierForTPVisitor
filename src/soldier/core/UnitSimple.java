@@ -88,12 +88,6 @@ public abstract class UnitSimple extends UnitObservableAbstract {
 			}
 		};
 	}
-	
-	public void accept(Visitor v){
-		Iterator<Equipment> e = this.getEquipments();
-		while (e.hasNext())
-			e.next().accept(v);
-	}
 
 	@Override
 	final public Iterator<Unit> iterator() {

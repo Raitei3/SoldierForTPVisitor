@@ -2,9 +2,7 @@ package soldier.core;
 
 public class CounterAttackWeaponVisitor implements Visitor {
 	
-	public void visit(UnitGroup o) {
-		o.accept(this);
-	}
+	public void visit(UnitGroup o) {}
 
 	public void visit(UnitInfantry o) {}
 	

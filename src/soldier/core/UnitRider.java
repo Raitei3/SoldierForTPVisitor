@@ -4,6 +4,8 @@
  */
 package soldier.core;
 
+import java.util.Iterator;
+
 public abstract class UnitRider extends UnitSimple {
 
 	public UnitRider(String name, BehaviorSoldier behavior) {
@@ -11,7 +13,10 @@ public abstract class UnitRider extends UnitSimple {
 	}
 	
 	public void accept(Visitor v){
-		super.accept(v);
+		Iterator<Equipment> e = this.getEquipments();
+		while (e.hasNext())
+			e.next().accept(v); //on parcourt les armes des unités 
+								// et on leurs donnent le visiteur
 		v.visit(this);
 	}
 

@@ -7,9 +7,7 @@ public class CounterSoldierVisitor implements Visitor {
 		counter = 0;
 	}
 	
-	public void visit(UnitGroup o) {
-		o.accept(this);
-	}
+	public void visit(UnitGroup o) {}
 
 	public void visit(UnitInfantry o) {
 		counter++;
